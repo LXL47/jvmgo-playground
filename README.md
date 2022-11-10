@@ -6,7 +6,11 @@
 
 我使用jvmgo建了一个网站，可以在尝试运行一下Java代码，体验一下这个虚拟机的功能：http://jvm.xpqly.love/
 
+------
 
+
+
+jvmgo.exe的使用：
 
 在jvmgo所在目录下，放一个Java文件，然后在windows命令行输入以下命令，编译成class文件：
 
@@ -30,7 +34,7 @@ jvmgo -Xjre "E:\soft\Java\jdk1.8.0_271\jre" Main
 
 
 
-
+------
 
 如果想编译源代码为可执行文件，输入以下命令：(需要已经安装好go)
 
