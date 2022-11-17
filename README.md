@@ -7,7 +7,7 @@
 如果想要学习这本书，最好先学习一下jvm，推荐 《深入了解Java虚拟机》或者尚硅谷的jvm：https://www.bilibili.com/video/BV1PJ411n7xZ/
 
 
-### 我使用jvmgo建了一个网站，可以在尝试运行一下Java代码，体验一下这个虚拟机的功能：http://jvm.xpqly.love/:82
+### 我使用jvmgo建了一个网站，可以在尝试运行一下Java代码，体验一下这个虚拟机的功能：http://jvm.xpqly.love:82
 
 
 
