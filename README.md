@@ -4,7 +4,7 @@
 
 
 
-我使用jvmgo建了一个网站，可以在尝试运行一下Java代码，体验一下这个虚拟机的功能：http://jvm.xpqly.love/
+我使用jvmgo建了一个网站，可以在尝试运行一下Java代码，体验一下这个虚拟机的功能：http://jvm.xpqly.love/:82
 
 ------
 
