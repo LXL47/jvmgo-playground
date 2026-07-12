@@ -50,6 +50,16 @@ docker compose down
 docker compose -f compose.yaml -f compose.gvisor.yaml up --build -d
 ```
 
+生产服务器统一使用`compose.production.yaml`。该配置只把API发布到宿主机回环地址`127.0.0.1:8001`，Runner不发布端口并强制使用gVisor：
+
+```bash
+docker compose -f compose.production.yaml config
+docker compose -f compose.production.yaml up --build -d
+curl -fsS http://127.0.0.1:8001/healthz
+```
+
+生产配置要求Docker已经登记`runsc`运行时；缺少gVisor时应停止部署，不得回退为公开匿名代码直接运行在默认runc中。
+
 ## 配置
 
 项目不使用 `.env`。API 配置位于 `config/api.yaml`，Runner 和 JVM 沙箱预算位于 `config/runner.yaml`。

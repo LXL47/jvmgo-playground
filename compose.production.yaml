@@ -1,0 +1,75 @@
+name: jvmgo-playground
+
+services:
+  api:
+    build:
+      context: .
+      target: api
+    restart: unless-stopped
+    init: true
+    read_only: true
+    user: "65532:65532"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - target: 8080
+        published: "8001"
+        host_ip: 127.0.0.1
+        protocol: tcp
+    volumes:
+      - ./config/api.yaml:/app/config/api.yaml:ro
+    tmpfs:
+      - /tmp:size=16m,mode=1777,nosuid,nodev,noexec
+    pids_limit: 32
+    mem_limit: 128m
+    cpus: 0.50
+    healthcheck:
+      test: ["CMD", "/app/healthcheck", "http://127.0.0.1:8080/healthz"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - public
+      - sandbox
+
+  runner:
+    build:
+      context: .
+      target: runner
+    runtime: runsc
+    restart: unless-stopped
+    init: true
+    read_only: true
+    user: "65532:65532"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./config/runner.yaml:/app/config/runner.yaml:ro
+    tmpfs:
+      - /work:size=128m,mode=0700,nosuid,nodev,noexec,uid=65532,gid=65532
+      - /tmp:size=16m,mode=0700,nosuid,nodev,noexec,uid=65532,gid=65532
+    pids_limit: 64
+    mem_limit: 512m
+    cpus: 1.0
+    ulimits:
+      nofile:
+        soft: 256
+        hard: 256
+    healthcheck:
+      test: ["CMD", "/app/healthcheck", "http://127.0.0.1:8081/healthz"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    networks:
+      - sandbox
+
+networks:
+  public:
+  sandbox:
+    internal: true
