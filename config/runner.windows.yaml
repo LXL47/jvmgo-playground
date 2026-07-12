@@ -1,0 +1,18 @@
+runner:
+  listen: ":18081"
+  work_root: "../tmp/jobs"
+  javac_path: 'C:\Program Files\Java\jdk1.8.0_271\bin\javac.exe'
+  jvm_path: "../tmp/jvmgo.exe"
+  jre_path: 'C:\Program Files\Java\jdk1.8.0_271\jre'
+  compile_timeout: "5s"
+  execution_timeout: "2s"
+  max_source_bytes: 65536
+  max_class_bytes: 2097152
+  max_class_files: 64
+  max_concurrent: 2
+
+sandbox:
+  max_instructions: 2000000
+  max_heap_bytes: 33554432
+  max_array_length: 100000
+  max_output_bytes: 32768

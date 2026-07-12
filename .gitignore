@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+*.exe
+*.class
+*.jar
+*.log
+*.out
+tmp/
+docs/screenshots/

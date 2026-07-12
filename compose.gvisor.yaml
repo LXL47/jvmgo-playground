@@ -1,0 +1,3 @@
+services:
+  runner:
+    runtime: runsc

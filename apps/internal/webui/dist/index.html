@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="在浏览器中使用 Go 实现的 JVM 运行 Java 代码">
+  <title>JVMGO Playground</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="JVMGO Playground 首页">
+      <span class="brand-mark" aria-hidden="true">J</span>
+      <span><strong>JVMGO</strong><small>PLAYGROUND</small></span>
+    </a>
+    <div class="runtime-state" aria-live="polite">
+      <span class="state-light" id="runtimeLight"></span>
+      <span id="runtimeText">连接运行时</span>
+    </div>
+    <a class="repo-link" href="https://github.com/LXL47/jvmgo-playground" target="_blank" rel="noreferrer">GitHub 仓库</a>
+  </header>
+
+  <main>
+    <section class="control-band" aria-label="执行状态与资源预算">
+      <div class="pipeline" id="pipeline">
+        <div class="pipeline-stage active" data-stage="source"><span>01</span><strong>源码</strong></div>
+        <i aria-hidden="true"></i>
+        <div class="pipeline-stage" data-stage="compile"><span>02</span><strong>JAVAC</strong></div>
+        <i aria-hidden="true"></i>
+        <div class="pipeline-stage" data-stage="class"><span>03</span><strong>CLASS</strong></div>
+        <i aria-hidden="true"></i>
+        <div class="pipeline-stage" data-stage="run"><span>04</span><strong>JVMGO</strong></div>
+      </div>
+      <dl class="limit-grid">
+        <div><dt>指令</dt><dd id="instructionLimit">--</dd></div>
+        <div><dt>受管堆</dt><dd id="heapLimit">--</dd></div>
+        <div><dt>数组</dt><dd id="arrayLimit">--</dd></div>
+        <div><dt>输出</dt><dd id="outputLimit">--</dd></div>
+        <div><dt>墙钟</dt><dd id="timeoutLimit">--</dd></div>
+      </dl>
+    </section>
+
+    <section class="workspace">
+      <section class="tool-panel editor-panel">
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-index">INPUT / JAVA 8</span>
+            <h1>Main.java</h1>
+          </div>
+          <div class="toolbar-actions">
+            <label class="select-wrap">
+              <span class="sr-only">示例程序</span>
+              <select id="presetSelect" title="选择示例程序">
+                <option value="hello">Hello JVMGO</option>
+                <option value="fibonacci">斐波那契</option>
+                <option value="array">数组排序</option>
+              </select>
+            </label>
+            <button class="quiet-button" id="resetButton" type="button">重置</button>
+            <button class="run-button" id="runButton" type="button"><span aria-hidden="true">▶</span> 运行代码</button>
+          </div>
+        </div>
+        <div class="editor-shell">
+          <pre class="line-numbers" id="lineNumbers" aria-hidden="true">1</pre>
+          <textarea id="sourceEditor" aria-label="Java 源代码" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+        </div>
+        <div class="panel-footer">
+          <span id="sourceStats">0 行 · 0 B</span>
+          <span>UTF-8</span>
+        </div>
+      </section>
+
+      <section class="tool-panel output-panel">
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-index">OUTPUT / STDOUT</span>
+            <h2>执行结果</h2>
+          </div>
+          <div class="toolbar-actions">
+            <span class="status-chip ready" id="statusChip">就绪</span>
+            <button class="quiet-button" id="copyButton" type="button">复制输出</button>
+          </div>
+        </div>
+        <div class="output-shell">
+          <pre id="outputText" tabindex="0">等待执行。</pre>
+        </div>
+        <div class="panel-footer">
+          <span id="jobMeta">任务尚未创建</span>
+          <span id="durationMeta">-- ms</span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="sr-only" id="announcement" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

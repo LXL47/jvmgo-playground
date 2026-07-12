@@ -1,0 +1,6 @@
+api:
+  listen: ":8080"
+  runner_url: "http://runner:8081"
+  runner_timeout: "10s"
+  max_source_bytes: 65536
+  requests_per_minute: 10

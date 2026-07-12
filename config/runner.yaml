@@ -1,0 +1,18 @@
+runner:
+  listen: ":8081"
+  work_root: "/work"
+  javac_path: "/opt/java/openjdk/bin/javac"
+  jvm_path: "/app/jvmgo"
+  jre_path: "/opt/java/openjdk/jre"
+  compile_timeout: "5s"
+  execution_timeout: "2s"
+  max_source_bytes: 65536
+  max_class_bytes: 2097152
+  max_class_files: 64
+  max_concurrent: 2
+
+sandbox:
+  max_instructions: 2000000
+  max_heap_bytes: 33554432
+  max_array_length: 100000
+  max_output_bytes: 32768

@@ -1,0 +1,9 @@
+.git
+.idea
+.vscode
+**/*.exe
+**/*.class
+**/*.jar
+**/*.log
+**/tmp
+docs/screenshots
