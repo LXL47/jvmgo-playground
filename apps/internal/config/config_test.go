@@ -61,6 +61,18 @@ func TestRepositoryConfigFiles(t *testing.T) {
 			t.Fatalf("%s 缺少 services", name)
 		}
 	}
+	workflow := filepath.Join(root, ".github", "workflows", "ci.yml")
+	data, err := os.ReadFile(workflow)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var document map[string]any
+	if err := yaml.Unmarshal(data, &document); err != nil {
+		t.Fatalf("CI 工作流不是合法 YAML: %v", err)
+	}
+	if document["jobs"] == nil {
+		t.Fatal("CI 工作流缺少 jobs")
+	}
 }
 
 func TestLoadRunnerRejectsZeroBudget(t *testing.T) {
