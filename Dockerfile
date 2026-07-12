@@ -1,4 +1,4 @@
-FROM golang:1.24-bookworm AS app-builder
+FROM golang:1.26.5-bookworm AS app-builder
 ENV GOPROXY=https://goproxy.cn,direct \
     GOSUMDB=sum.golang.google.cn
 WORKDIR /src/apps
@@ -9,7 +9,7 @@ RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/api ./cmd/api \
     && CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/runner ./cmd/runner \
     && CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/healthcheck ./cmd/healthcheck
 
-FROM golang:1.24-bookworm AS jvm-builder
+FROM golang:1.26.5-bookworm AS jvm-builder
 ENV GOPROXY=https://goproxy.cn,direct \
     GOSUMDB=sum.golang.google.cn
 WORKDIR /src/jvm
