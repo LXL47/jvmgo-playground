@@ -60,6 +60,8 @@ curl -fsS http://127.0.0.1:8001/healthz
 
 生产配置要求Docker已经登记`runsc`运行时；缺少gVisor时应停止部署，不得回退为公开匿名代码直接运行在默认runc中。
 
+Docker构建阶段固定使用国内Go模块代理，避免国内服务器直连`proxy.golang.org`导致生产构建超时；模块校验仍通过`sum.golang.google.cn`执行。
+
 ## 配置
 
 项目不使用 `.env`。API 配置位于 `config/api.yaml`，Runner 和 JVM 沙箱预算位于 `config/runner.yaml`。
