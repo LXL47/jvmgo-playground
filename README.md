@@ -2,9 +2,13 @@
 
 JVMGO Playground 是一个 Go 单仓库项目：保留《自己动手写 Java 虚拟机》的章节代码，同时提供在线 Java 8 代码编辑、编译和执行页面。后端与 Runner 均使用 Go，部署入口统一为 Docker Compose。
 
-公开仓库：<https://github.com/LXL47/jvmgo-playground>
+## 在线体验
 
-`main` 分支通过 GitHub Actions 执行 Go 测试、静态检查和两个 Docker 镜像的构建验证，不包含自动部署。
+在线访问：[https://jvm.xpqly.love/](https://jvm.xpqly.love/)
+
+![JVMGO Playground 在线 Java 运行界面](docs/assets/jvmgo-playground-online.png)
+
+公开仓库：<https://github.com/LXL47/jvmgo-playground>
 
 ## 架构
 
