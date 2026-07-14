@@ -5,6 +5,10 @@ services:
     build:
       context: .
       target: api
+      labels:
+        io.xpqly.deploy.managed: "true"
+        io.xpqly.deploy.project: "jvmgo-playground"
+        io.xpqly.deploy.release: "${DEPLOY_RELEASE_SHA:?DEPLOY_RELEASE_SHA is required}"
     restart: unless-stopped
     init: true
     read_only: true
@@ -23,6 +27,7 @@ services:
     tmpfs:
       - /tmp:size=16m,mode=1777,nosuid,nodev,noexec
     pids_limit: 32
+    mem_reservation: 32m
     mem_limit: 128m
     cpus: 0.50
     healthcheck:
@@ -39,6 +44,10 @@ services:
     build:
       context: .
       target: runner
+      labels:
+        io.xpqly.deploy.managed: "true"
+        io.xpqly.deploy.project: "jvmgo-playground"
+        io.xpqly.deploy.release: "${DEPLOY_RELEASE_SHA:?DEPLOY_RELEASE_SHA is required}"
     runtime: runsc
     restart: unless-stopped
     init: true
@@ -54,6 +63,7 @@ services:
       - /work:size=128m,mode=0700,nosuid,nodev,noexec,uid=65532,gid=65532
       - /tmp:size=16m,mode=0700,nosuid,nodev,noexec,uid=65532,gid=65532
     pids_limit: 64
+    mem_reservation: 192m
     mem_limit: 512m
     cpus: 1.0
     ulimits:
